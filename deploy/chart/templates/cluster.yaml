@@ -1,0 +1,20 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ .Release.Name }}-db
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/hook-weight: "2"
+spec:
+  instances: 1
+  bootstrap:
+    initdb:
+      database: {{ .Values.database.name }}
+      owner: {{ .Values.database.owner }}
+      secret:
+        name: app-secret
+  storage:
+    size: 1Gi
+
+    

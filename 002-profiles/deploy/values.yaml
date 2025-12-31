@@ -1,0 +1,20 @@
+image:
+  repository: albertriu1998/profiles
+  pullPolicy: Always
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  enabled: true
+  className: ""
+  hosts:
+    - host: bookaddicts.local
+      paths:
+      - path: /profiles(/.*)?
+        pathType: ImplementationSpecific
+
+database:
+  name: profilesdb
+  owner: profiles_user
+  password: securepassword123
+  ip: fastapi-db-postgresql.default.svc.cluster.local

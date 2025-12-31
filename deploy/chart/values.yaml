@@ -1,0 +1,16 @@
+replicaCount: 1
+image:
+  repository: your-docker-repo/fastapi-app
+  pullPolicy: Always
+service:
+  type: NodePort
+  port: 80
+containerPort: 8000
+resources: {}
+ingress:
+  enabled: false
+  className: ""
+  hosts: []
+    # - host: chart-example.local
+    #   paths:
+
