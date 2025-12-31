@@ -1,0 +1,12 @@
+fastapi == 0.123.10
+pydantic == 2.12.5
+typing_extensions
+sqlmodel
+psycopg2-binary
+passlib
+jose
+pwdlib
+jwt
+pwdlib[argon2]
+pyjwt
+uvicorn[standard]
