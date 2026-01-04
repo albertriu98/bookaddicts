@@ -98,3 +98,23 @@ async def get_reading_progress(
 
     return reading_record
 
+@router.delete("/stop-reading/{book_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def stop_reading(
+    book_id: str,
+    db: SessionDep = Depends(),
+    current_user: Annotated[BaseProfile, Depends(get_current_user)]
+):
+    reading_record = db.exec(
+        select(readingProgress).where(
+            (readingProgress.profile_id == current_user.id) & 
+            (readingProgress.book_id == book_id)
+        )
+    ).first()
+
+    if not reading_record:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Reading record not found")
+
+    db.delete(reading_record)
+    db.commit()
+    #trigger event to queue
+    return
