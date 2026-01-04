@@ -17,4 +17,4 @@ database:
   name: profilesdb
   owner: profiles_user
   password: securepassword123
-  ip: fastapi-db-postgresql.default.svc.cluster.local
+  ip: profiles-bookaddicts-db-rw.profiles-bookaddicts.svc.cluster.local

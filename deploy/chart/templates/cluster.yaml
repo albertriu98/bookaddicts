@@ -14,7 +14,7 @@ spec:
       database: {{ .Values.database.name }}
       owner: {{ .Values.database.owner }}
       secret:
-        name: app-secret
+        name: db-secret
   storage:
     size: 1Gi
 {{- end }}
