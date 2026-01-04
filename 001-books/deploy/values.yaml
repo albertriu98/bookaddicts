@@ -1,0 +1,14 @@
+image:
+  repository: albertriu1998/books
+  pullPolicy: Always
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  enabled: true
+  className: ""
+  hosts:
+    - host: bookaddicts.local
+      paths:
+      - path: /books(/.*)?
+        pathType: ImplementationSpecific
