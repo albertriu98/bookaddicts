@@ -20,6 +20,7 @@ spec:
             - containerPort: {{ .Values.containerPort }}
           resources:
           {{ toYaml .Values.resources | indent 12 }}
+          {{- if .Values.database }}
           env:
           - name: POSTGRESQL_USER
             valueFrom:
@@ -35,3 +36,5 @@ spec:
             value: {{ .Values.database.name }}
           - name: POSTGRESQL_ADDRESS
             value: {{ .Values.database.ip }} #problems with DNS resolution of the service b
+
+          {{- end }}
