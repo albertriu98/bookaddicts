@@ -30,9 +30,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db: Se
         user = decode_token(token, db)
     except InvalidTokenError:
         raise credentials_exception
-    user_db  =  db.exec(select(ProfileSQL).where(ProfileSQL.username == user.username)).first()
-    current_user = CurrentUser(username=user_db.username, email = user_db.email, avatar_url = user_db.avatar_url, id = user_db.id)
-    return current_user
+    return user
 
 @router.post("/start-reading", response_model=readingProgress)
 async def start_reading(db: SessionDep, current_user: Annotated[BaseProfile, book_id, Depends(get_current_user)]):
